@@ -2,6 +2,7 @@ package com.example.roomdatabaseexample.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 
 import androidx.lifecycle.LiveData;
 
@@ -30,8 +31,43 @@ public class WordRepository {
         new insertAsyncTask(mWordDao, word).execute();
     }
 
+    public void deleteAll(){
+        new deleteAllAsyncTask(mWordDao);
+    }
 
+    public void deleteWord(Word word){
+        new deleteWordAsyncTask(mWordDao).execute(word);
+    }
 
+    private class deleteWordAsyncTask extends AsyncTask<Word,Void,Void>{
+
+        private WordDao mAsyncTaskDao;
+
+        deleteWordAsyncTask(WordDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Word... words) {
+            mAsyncTaskDao.deleteWord(words[0]);
+            return null;
+        }
+    }
+
+    private class deleteAllAsyncTask extends AsyncTask<Void,Void,Void>{
+
+        private WordDao mAsyncTaskDao;
+
+        deleteAllAsyncTask(WordDao dao){
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            mAsyncTaskDao.deleteAll();
+            return null;
+        }
+    }
 
     private class insertAsyncTask extends AsyncTask<Void,Void,Void> {
 

@@ -61,4 +61,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         return mWords.size();
     }
 
+    public Word getWordAtPostion(int postion){
+        return mWords.get(postion);
+    }
 }
