@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.roomdatabaseexample.data.Word;
 
@@ -26,4 +27,9 @@ public interface WordDao {
     @Delete
     void deleteWord(Word word);
 
+    @Update
+    void updateWord(Word word);
+
+    @Query("SELECT * FROM wordTable LIMIT 1")
+    Word[] getAnyWord();
 }

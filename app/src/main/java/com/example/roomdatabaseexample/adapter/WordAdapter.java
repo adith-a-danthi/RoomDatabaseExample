@@ -18,12 +18,20 @@ import java.util.List;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
 
+    private static ClickListener clickListener;
+
     class WordViewHolder extends RecyclerView.ViewHolder{
         private final TextView wordItemView;
 
         public WordViewHolder(@NonNull View itemView) {
             super(itemView);
             wordItemView = itemView.findViewById(R.id.wordTv);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClick(v,getAdapterPosition());
+                }
+            });
         }
 
         public void  bind(Word word) {
@@ -64,4 +72,12 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
     public Word getWordAtPostion(int postion){
         return mWords.get(postion);
     }
+
+    public void setItemOnClickListener(ClickListener clickListener){
+        WordAdapter.clickListener = clickListener;
+    }
+    public interface ClickListener{
+        void onItemClick(View v,int position);
+    }
+
 }
