@@ -2,7 +2,6 @@ package com.example.roomdatabaseexample.repository;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.os.strictmode.WebViewMethodCalledOnWrongThreadViolation;
 
 import androidx.lifecycle.LiveData;
 

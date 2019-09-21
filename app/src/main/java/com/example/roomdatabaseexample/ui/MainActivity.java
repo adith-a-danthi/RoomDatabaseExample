@@ -7,22 +7,18 @@ import com.example.roomdatabaseexample.R;
 import com.example.roomdatabaseexample.adapter.WordAdapter;
 import com.example.roomdatabaseexample.data.Word;
 import com.example.roomdatabaseexample.viewModel.WordViewModel;
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -91,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 Word word = adapter.getWordAtPostion(position);
-
+                launchUpdateWordActivity(word);
             }
         });
     }
@@ -148,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
     public void launchUpdateWordActivity(Word word){
         Intent intent = new Intent(this,NewWordActivity.class);
         intent.putExtra(EXTRA_DATA_UPDATE_WORD,word.getWord());
-        intent.putExtra(EXTRA_DATA_ID,word.getId());
+        intent.putExtra(EXTRA_DATA_ID,word.getWordId());
         startActivityForResult(intent,UPDATE_WORD_ACTIVITY_REQUEST_CODE);
 
     }

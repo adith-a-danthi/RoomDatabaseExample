@@ -30,9 +30,11 @@ public class Word {
         return this.mWord;
     }
 
-    public int getId(){return mWordId;}
+    public int getWordId(){
+        return mWordId;
+    }
 
-    public void setId(int id){
+    public void setWordId(int id){
         this.mWordId = id;
     }
 
