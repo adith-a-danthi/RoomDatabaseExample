@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -64,23 +65,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //for swipe actions
-        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
 
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int position = viewHolder.getAdapterPosition();
-                Word delWord = adapter.getWordAtPosition(position);
-                Toast.makeText(MainActivity.this, "Deleting" + delWord.getWord(), Toast.LENGTH_SHORT).show();
-
-                // deleting the word
-                mWordViewModel.deleteWord(delWord);
-            }
-        });
+       helper.attachToRecyclerView(recyclerView);
 
     }
 
@@ -98,11 +84,7 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.delete_all) {
-            Toast.makeText(this, "Clearing Data...", Toast.LENGTH_SHORT).show();
-            mWordViewModel.deleteAll();
-            return true;
-        }
+
         return super.onOptionsItemSelected(item);
     }
 
