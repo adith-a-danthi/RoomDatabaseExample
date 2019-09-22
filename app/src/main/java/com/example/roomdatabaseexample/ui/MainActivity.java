@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -81,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
                 mWordViewModel.deleteWord(delWord);
             }
         });
+
+       helper.attachToRecyclerView(recyclerView);
 
     }
 
