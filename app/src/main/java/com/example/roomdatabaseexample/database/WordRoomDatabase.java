@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.roomdatabaseexample.data.Word;
 import com.example.roomdatabaseexample.database.dao.WordDao;
 
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word.class}, version = 2, exportSchema = false)
 public abstract class WordRoomDatabase extends RoomDatabase {
 
     //Define the DAOs that work with the database. Provide an abstract "getter" method for each @Dao.

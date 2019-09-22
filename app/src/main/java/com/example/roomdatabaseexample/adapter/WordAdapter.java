@@ -18,7 +18,7 @@ import java.util.List;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
 
-    private static ClickListener clickListener;
+    private ClickListener clickListener;
 
     class WordViewHolder extends RecyclerView.ViewHolder{
         private final TextView wordItemView;
@@ -74,7 +74,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
     }
 
     public void setItemOnClickListener(ClickListener clickListener){
-        WordAdapter.clickListener = clickListener;
+        this.clickListener = clickListener;
     }
     public interface ClickListener{
         void onItemClick(View v,int position);
