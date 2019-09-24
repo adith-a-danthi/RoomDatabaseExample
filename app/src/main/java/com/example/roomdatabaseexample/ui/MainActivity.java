@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
 
        helper.attachToRecyclerView(recyclerView);
 
+       helper.attachToRecyclerView(recyclerView);
+
     }
 
     @Override
