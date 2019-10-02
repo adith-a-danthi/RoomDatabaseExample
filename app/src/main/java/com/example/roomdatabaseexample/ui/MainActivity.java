@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
-        final WordAdapter adapter = new WordAdapter(this);
+        final WordAdapter adapter = new WordAdapter();
 
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.setItemOnClickListener(new WordAdapter.ClickListener() {
             @Override
-            public void onItemClick(View v, int position) {
-                Word word = adapter.getWordAtPostion(position);
+            public void onItemClick(Word word) {
                 launchUpdateWordActivity(word);
             }
         });
