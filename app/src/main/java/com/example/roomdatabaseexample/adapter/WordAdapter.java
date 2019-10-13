@@ -20,31 +20,35 @@ public class WordAdapter extends RecyclerView.Adapter<WordViewHolder> {
 
     private ClickListener clickListener;
 
-//    class WordViewHolder extends RecyclerView.ViewHolder{
-//        private final TextView wordItemView;
-//
-//        public WordViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//            wordItemView = itemView.findViewById(R.id.wordTv);
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    clickListener.onItemClick(v,getAdapterPosition());
-//                }
-//            });
-//        }
-//
-//        public void  bind(Word word) {
-//            wordItemView.setText(word.getWord());
-//        }
-//    }
+/*
+    class WordViewHolder extends RecyclerView.ViewHolder{
+        private final TextView wordItemView;
 
-//    private final LayoutInflater mInflater;
+        public WordViewHolder(@NonNull View itemView) {
+            super(itemView);
+            wordItemView = itemView.findViewById(R.id.wordTv);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    clickListener.onItemClick(v,getAdapterPosition());
+                }
+            });
+        }
+
+        public void  bind(Word word) {
+            wordItemView.setText(word.getWord());
+        }
+    }
+
+    private final LayoutInflater mInflater;
+*/
+
     private List<Word> mWords = new ArrayList<>();
-//
-//    public WordAdapter(Context context) {
-//        mInflater = LayoutInflater.from(context);
-//    }
+/*
+    public WordAdapter(Context context) {
+        mInflater = LayoutInflater.from(context);
+    }
+*/
 
     @NonNull
     @Override

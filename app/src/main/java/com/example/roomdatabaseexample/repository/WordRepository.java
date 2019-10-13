@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 
 import com.example.roomdatabaseexample.data.Word;
 import com.example.roomdatabaseexample.database.WordRoomDatabase;
@@ -40,6 +41,10 @@ public class WordRepository {
 
     public void updateWord(Word word){
         new updateWordAsyncTask(mWordDao).execute(word);
+    }
+
+    public DataSource.Factory<Integer,Word> getAllPagedWords(){
+        return mWordDao.getAllPagedWords();
     }
 
     private class updateWordAsyncTask extends AsyncTask<Word,Void,Void>{

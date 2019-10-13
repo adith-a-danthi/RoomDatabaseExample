@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.example.roomdatabaseexample.R;
 import com.example.roomdatabaseexample.adapter.WordAdapter;
+import com.example.roomdatabaseexample.adapter.WordPagingAdapter;
 import com.example.roomdatabaseexample.data.Word;
 import com.example.roomdatabaseexample.viewModel.WordViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 
 import androidx.lifecycle.ViewModelProviders;
+import androidx.paging.PagedList;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
@@ -55,8 +57,22 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+        final WordPagingAdapter mPagingadapter = new WordPagingAdapter();
+
+        recyclerView.setAdapter(mPagingadapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mWordViewModel.getAllPagedWords().observe(this, new Observer<PagedList<Word>>() {
+            @Override
+            public void onChanged(PagedList<Word> words) {
+                mPagingadapter.submitList(words);
+            }
+        });
+
         final WordAdapter adapter = new WordAdapter();
 
+/*
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -66,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setWords(words);
             }
         });
+*/
 
 
-        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+/*        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
                 return false;
@@ -88,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(Word word) {
                 launchUpdateWordActivity(word);
             }
-        });
+        });*/
     }
 
     @Override
@@ -105,11 +122,11 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
-        if(id == R.id.delete_all){
+        /*if(id == R.id.delete_all){
             Toast.makeText(this, "Deleting All Words", Toast.LENGTH_SHORT).show();
             mWordViewModel.deleteAll();
             return true;
-        }
+        }*/
         return super.onOptionsItemSelected(item);
     }
 

@@ -9,6 +9,8 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "wordTable")
 public class Word {
 
+
+
     @PrimaryKey(autoGenerate = true)
     private int mWordId;
 
@@ -34,8 +36,11 @@ public class Word {
         return mWordId;
     }
 
-    public void setWordId(int id){
-        this.mWordId = id;
+    public void setWordId(int mWordId) {
+        this.mWordId = mWordId;
     }
 
+    public boolean equals(Word w2){
+        return (mWordId == w2.getWordId() && mWord == w2.getWord());
+    }
 }

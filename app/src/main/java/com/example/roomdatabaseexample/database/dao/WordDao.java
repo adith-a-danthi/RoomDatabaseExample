@@ -1,6 +1,7 @@
 package com.example.roomdatabaseexample.database.dao;
 
 import androidx.lifecycle.LiveData;
+import androidx.paging.DataSource;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -20,6 +21,9 @@ public interface WordDao {
 
     @Query("SELECT * FROM wordTable ORDER BY word ASC")
     LiveData<List<Word>> getAllWords();
+
+    @Query("SELECT * FROM wordTable ORDER BY word ASC")
+    DataSource.Factory<Integer,Word> getAllPagedWords();
 
     @Query("DELETE FROM wordTable")
     void deleteAll();
