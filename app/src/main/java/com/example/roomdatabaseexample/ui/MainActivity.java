@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        helper.attachToRecyclerView(recyclerView);
+
         adapter.setItemOnClickListener(new WordAdapter.ClickListener() {
             @Override
             public void onItemClick(View v, int position) {
